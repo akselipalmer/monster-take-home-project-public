@@ -1,0 +1,198 @@
+<form
+  class="px-10 py-20"
+  [formGroup]="flightInfoForm"
+  (ngSubmit)="handleSubmit()"
+>
+  <div class="space-y-12">
+    <div class="border-b border-gray-900/10 pb-12">
+      <h2 class="text-3xl font-semibold leading-7 text-gray-900">
+        Flight Ticket Information
+      </h2>
+
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-3">
+          <label
+            for="airline"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Airline</label
+          >
+          <div class="mt-2">
+            <input
+              type="text"
+              name="airline"
+              id="airline"
+              formControlName="airline"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div class="sm:col-span-3">
+          <label
+            for="arrivalDate"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Arrival Date</label
+          >
+          <div class="mt-2">
+            <input
+              type="date"
+              name="arrivalDate"
+              id="arrivalDate"
+              formControlName="arrivalDate"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div class="sm:col-span-4">
+          <label
+            for="arrivalTime"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Arrival Time</label
+          >
+          <div class="mt-2">
+            <input
+              id="arrivalTime"
+              name="arrivalTime"
+              type="time"
+              type="time"
+              formControlName="arrivalTime"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label
+            for="flightNumber"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Flight Number</label
+          >
+          <div class="mt-2">
+            <input
+              type="text"
+              name="flightNumber"
+              id="flightNumber"
+              formControlName="flightNumber"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div class="sm:col-span-2 sm:col-start-1">
+          <label
+            for="numOfGuests"
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Number Of Guests</label
+          >
+          <div class="mt-2">
+            <input
+              type="number"
+              name="numOfGuests"
+              id="numOfGuests"
+              formControlName="numOfGuests"
+              class="form-input block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+          <p class="mt-3 text-sm leading-6 text-gray-600">
+            Must be a number greater than 0.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-span-full">
+    <label
+      for="about"
+      class="block text-sm font-medium leading-6 text-gray-900 mt-4"
+      >Comments</label
+    >
+    <div class="mt-2">
+      <textarea
+        id="about"
+        name="about"
+        rows="3"
+        formControlName="comments"
+        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      ></textarea>
+    </div>
+    <p class="mt-3 text-sm leading-6 text-gray-600">
+      Let us know if you have any special requests or additional information.
+    </p>
+  </div>
+
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <button
+      type="submit"
+      class="flex w-full justify-center rounded-md bg-gray-400 hover:bg-gray-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 cursor-not-allowed"
+      [disabled]="!flightInfoForm.valid"
+      [ngClass]="{
+        'bg-indigo-600 hover:bg-indigo-500 cursor-pointer focus-visible:outline-indigo-600':
+          flightInfoForm.valid
+      }"
+    >
+      Save
+    </button>
+  </div>
+</form>
+
+<div
+  class="relative z-10"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  *ngIf="status !== 'none'"
+>
+  <div
+    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+    aria-hidden="true"
+  ></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div
+      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+    >
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+      >
+        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="my-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+              <h3
+                class="text-xl font-semibold leading-6 text-gray-900"
+                id="modal-title"
+              >
+                @switch ( status ) { @case ('success') { Flight Information
+                Saved } @case ('error') { Error Saving Flight Information }
+                @case ('pending') { Loading... } @default { Flight Information
+                Saved } }
+              </h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">
+                  @if (status === 'success') { Your flight information has been
+                  saved. You may close this tab. } @if (status === 'error') {
+                  There was an error saving your flight information. Please try
+                  again. }
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+          *ngIf="status === 'error'"
+        >
+          <button
+            (click)="handleSubmit()"
+            type="button"
+            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

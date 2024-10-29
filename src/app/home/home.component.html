@@ -1,0 +1,95 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img
+      class="mx-auto h-14 w-auto"
+      src="https://firebasestorage.googleapis.com/v0/b/monster-take-home-projec-4b069.appspot.com/o/Flight%20Info%20Logo.png?alt=media&token=f0acc0a3-7db3-4966-ab9e-6d179a9f213b"
+      alt="Flight Info Logo"
+    />
+    <h2
+      class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+    >
+      Enter your email address to get started with the demo
+    </h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" [formGroup]="emailForm" (ngSubmit)="handleSubmit()">
+      <div>
+        <label
+          for="email"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Email address</label
+        >
+        <div class="mt-2">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            formControlName="email"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          [disabled]="!emailForm.valid"
+          class="flex w-full justify-center rounded-md bg-gray-400 hover:bg-gray-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600 cursor-not-allowed"
+          [ngClass]="{
+            'bg-indigo-600 hover:bg-indigo-500 cursor-pointer focus-visible:outline-indigo-600':
+              emailForm.valid
+          }"
+        >
+          Send Email
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div
+  class="relative z-10"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  *ngIf="submitted"
+>
+  <div
+    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+    aria-hidden="true"
+  ></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div
+      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+    >
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+      >
+        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+              <h3
+                class="text-base font-semibold leading-6 text-gray-900"
+                id="modal-title"
+              >
+                Email Sent
+              </h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">
+                  Check your email for your login link.
+                </p>
+                <p class="text-sm text-gray-500 mt-3 font-bold">
+                  If you don't see it in your inbox, remember to check your
+                  spam.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
